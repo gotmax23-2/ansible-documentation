@@ -20,7 +20,7 @@ import github.Repository
 import typer
 from codeowners import CodeOwners, OwnerTuple
 
-OWNER = "ansible"
+OWNER = "gotmax23-2"
 REPO = "ansible-documentation"
 LABELS_BY_CODEOWNER: dict[OwnerTuple, list[str]] = {
     ("TEAM", "@ansible/steering-committee"): ["sc_approval"],
