@@ -26,7 +26,7 @@ def handle_codeowner_labels(pr: github.PullRequest.PullRequest) -> None:
             print("file", file.filename)
             if labels_to_add := labels.pop(owner, None):
                 print("Adding labels to", f"{pr.id}:", *map(repr, labels_to_add))
-                # pr.add_to_labels(*labels_to_add)
+                pr.add_to_labels(*labels_to_add)
         if not labels:
             return
 
