@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import github
+import github.Auth
 import github.PullRequest
 import typer
 from codeowners import OwnerTuple, CodeOwners
@@ -36,7 +38,7 @@ APP = typer.Typer()
 
 @APP.command()
 def main(pr_number: int):
-    gclient = github.Github()
+    gclient = github.Github(auth=github.Auth.Token(os.environ["GITHUB_TOKEN"]))
     repo = gclient.get_repo(f"{OWNER}/{REPO}")
     pr = repo.get_pull(pr_number)
     if pr.state != "open":

@@ -6,6 +6,9 @@
   pull_request_target:
 
 name: "Triage PRs"
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   label_prs:
@@ -23,5 +26,7 @@ jobs:
           python -m venv venv
           ./venv/bin/pip install -r hacking/pr_labeler/requirements.txt
       - name: Run the PR labeler
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./venv/bin/python hacking/pr_labeler/label.py ${{ github.event.number }}
